@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_histories",
+  "info": {
+    "name": "UserHistory"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "questions": {
+      "collection": "question",
+      "via": "user_history"
+    }
+  }
+}

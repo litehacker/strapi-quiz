@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "name": "Category"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Konu": {
+      "type": "string"
+    },
+    "questions": {
+      "collection": "question",
+      "via": "category"
+    }
+  }
+}

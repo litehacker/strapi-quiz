@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sinavs",
+  "info": {
+    "name": "Exam"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Ad": {
+      "type": "string"
+    },
+    "questions": {
+      "via": "exam",
+      "collection": "question"
+    },
+    "Dakikalar": {
+      "type": "biginteger"
+    }
+  }
+}
