@@ -35,7 +35,8 @@ const RightBar = () =>{
   //chart
   const [chartData,setChartData] = useState({});
 
-  useEffect( () => {if(timeLeft){
+  useEffect( () => {
+    if(timeLeft){
     const chart = () => {
       if(timeLeft){
         setChartData({
