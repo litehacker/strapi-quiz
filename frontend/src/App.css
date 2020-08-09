@@ -3,8 +3,10 @@
 }
 
 .App-logo {
-  height: 10vmin;
+  height: 10vh;
   pointer-events: none;
+}
+.App-logo img{
 }
 
 .App-link {
@@ -52,9 +54,10 @@ html {
 }
 
 .header {
+  height: 20vh;
   background-color: lightblue;
   color: #ffffff;
-  padding: 35px;
+  padding: 5vh 2vh 5vh 2vh;
 }
 
 .shadow{

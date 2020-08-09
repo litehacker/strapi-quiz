@@ -1,11 +1,11 @@
 import React from 'react';
-import quiz from '../quiz.svg';
+import TopMenu from './topMenuComponent.js';
 
 function Header() {
   return (
     <div className="header">
       <header>
-        <img src={quiz} className="App-logo" alt="logo" />
+        <TopMenu/>
       </header>
     </div>
   );
