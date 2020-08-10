@@ -11,6 +11,7 @@ function Page() {
         <div className="col-6 shadow" >
           <Question/>
           <Controlls/>
+
         </div>
         <RightBar/>
       </div>

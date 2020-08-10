@@ -1,0 +1,52 @@
+
+
+.carousel {
+  background: #FAFAFA;
+  padding: 0px 10% 0px 10%;
+}
+
+.flickity-prev-next-button {
+  top: 0px;
+  -webkit-transform: none;
+          transform: none;
+
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.flickity-prev-next-button.previous {
+  right: auto;
+  left: -10%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  opacity: 1;
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+
+}
+.flickity-prev-next-button.previous:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.flickity-prev-next-button.next {
+  left: auto;
+  right: -10%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  opacity: 1;
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+
+}
+.flickity-prev-next-button.next:hover {
+  background-color: #008CBA;
+  color: white;
+}
