@@ -6,7 +6,6 @@ import 'flickity/dist/flickity.min.css';
 export default class Slider extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       flickityReady: false,
     };
@@ -26,6 +25,7 @@ export default class Slider extends React.Component {
     this.flickity.reloadCells();
     this.flickity.resize();
     this.flickity.updateDraggable();
+    this.flickity.select( this.props.focus );
   }
 
   componentWillUnmount() {
@@ -55,7 +55,7 @@ export default class Slider extends React.Component {
 
   render() {
     return [
-      <div className={'test'} key="flickityBase" ref={node => (this.flickityNode = node)} />,
+      <div className={'questionsFlickity'} key="flickityBase" ref={node => (this.flickityNode = node)} />,
       this.renderPortal(),
     ].filter(Boolean);
   }
