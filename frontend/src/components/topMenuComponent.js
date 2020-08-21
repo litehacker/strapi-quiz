@@ -25,7 +25,7 @@ function TopMenu() {
         <div className="nav-links">
           <Link to="/">Anasayfa</Link>
           <Link to="/quiz">Sınavı Başla</Link>
-          <Link to="/auth">Giriş</Link>
+          <Link to="/login">Giriş</Link>
         </div>
       </div>
     </div>

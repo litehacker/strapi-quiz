@@ -4,17 +4,17 @@ import Slider from './Slider';
 import '../css/questionsSlider.css';
 
 const questions = [
-  {answered:false,No:91},
-  {answered:false,No:92},
-  {answered:true,No:93},
-  {answered:true,No:94},
-  {answered:true,No:94},
-  {answered:true,No:94},
-  {answered:true,No:94},
-  {answered:true,No:94},
-  {answered:true,No:94},
-  {answered:true,No:94},
-  {answered:true,No:94},
+  {answered:false,No:1},
+  {answered:false,No:2},
+  {answered:true,No:3},
+  {answered:true,No:4},
+  {answered:true,No:5},
+  {answered:true,No:6},
+  {answered:true,No:7},
+  {answered:true,No:8},
+  {answered:true,No:9},
+  {answered:true,No:10},
+  {answered:true,No:11},
 ];
 
 
