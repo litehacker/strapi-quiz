@@ -1,10 +1,12 @@
 import React from 'react';
+import Controlls from './questionButtonsComponent.js';
+
 import '../css/questionComponent.css';
 import '../css/questionComponent-radio.css';
 
 function Question() {
   return (
-    <>
+    <div className="col-12 shadow">
       <span>Q:96 </span>
       <div className="question ">
         <p className="questionText">
@@ -23,10 +25,8 @@ function Question() {
           <label htmlFor="test3">Hepsi</label>
         </p>
       </div>
-    </>
+      <Controlls/>
+    </div>
   );
 }
-// systemctl stop nginx
-// /opt/letsencrypt/certbot-auto renew
-// systemctl start nginx
 export default Question;

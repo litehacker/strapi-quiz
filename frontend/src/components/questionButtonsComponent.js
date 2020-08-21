@@ -1,8 +1,8 @@
 import React from 'react';
-
+import '../App.css';
 function QuestionButtons() {
   return (
-        <div className="col-12 ">
+        <div>
             <input type="button" className="button button-green" value="Onceki"/>
             <input type="button" className="button button-green" value="Sonraki"/>
 

@@ -20,7 +20,7 @@ const questions = [
 
 function LeftBar() {
   return (
-        <div className="col-3">
+
           <div className="carousel">
             <Slider
               focus={4}
@@ -39,7 +39,6 @@ function LeftBar() {
               ))}
             </Slider>
           </div>
-        </div>
   );
 }
 // systemctl stop nginx

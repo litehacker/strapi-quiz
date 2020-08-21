@@ -55,7 +55,6 @@ const RightBar = () =>{
   }}, [timeLeft] );
 
   return(
-    <div className="col-3">
       <div className="timer">
         <div>
           <span>{timeLeft ? Math.floor((timeLeft / (3600000)) % 24) + ':' + Math.floor((timeLeft / 60000) % 60) + ':' + Math.floor((timeLeft / 1000) % 60) : 'Süreniz Dolmuştur'}</span>
@@ -63,7 +62,6 @@ const RightBar = () =>{
         <Doughnut data={chartData}  options={{height:'200 px',tooltips:{enabled:false},maintainAspectRatio: true, cutoutPercentage:80, animation:{animateRotate:true}}}/>
 
       </div>
-    </div>
   );
 }
 // systemctl stop nginx
