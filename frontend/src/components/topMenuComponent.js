@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import '../css/topMenuComponent.css'
 import quiz from '../quiz.svg';
 
 function TopMenu() {
   return (
-    <div>
+    <div className="header">
       <div className="nav">
         <input type="checkbox" id="nav-check"/>
         <div className="nav-header">
@@ -23,9 +23,9 @@ function TopMenu() {
         </div>
 
         <div className="nav-links">
-          <Link to="/">Anasayfa</Link>
-          <Link to="/quiz">Sınavı Başla</Link>
-          <Link to="/login">Giriş</Link>
+          <NavLink to="/">Anasayfa</NavLink>
+          <NavLink to="/quiz">Sınavı Başla</NavLink>
+          <NavLink to="/login">Giriş</NavLink>
         </div>
       </div>
     </div>

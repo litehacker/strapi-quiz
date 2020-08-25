@@ -18,7 +18,7 @@ const questions = [
 ];
 
 
-function LeftBar() {
+const LeftBar = () => {
   return (
 
           <div className="carousel">
@@ -41,7 +41,4 @@ function LeftBar() {
           </div>
   );
 }
-// systemctl stop nginx
-// /opt/letsencrypt/certbot-auto renew
-// systemctl start nginx
 export default LeftBar;
