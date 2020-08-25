@@ -29,9 +29,7 @@ var cx = require("fbjs/lib/cx");
 
 var List = Immutable.List;
 
-var DraftEditorNode =
-/*#__PURE__*/
-function (_React$Component) {
+var DraftEditorNode = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(DraftEditorNode, _React$Component);
 
   function DraftEditorNode() {

@@ -49,9 +49,7 @@ var decorateCharacterList = function decorateCharacterList(config) {
   return config;
 };
 
-var ContentBlock =
-/*#__PURE__*/
-function (_ContentBlockRecord) {
+var ContentBlock = /*#__PURE__*/function (_ContentBlockRecord) {
   _inheritsLoose(ContentBlock, _ContentBlockRecord);
 
   function ContentBlock(config) {

@@ -22,9 +22,7 @@ var cx = require("fbjs/lib/cx");
  *
  * Override placeholder style via CSS.
  */
-var DraftEditorPlaceholder =
-/*#__PURE__*/
-function (_React$Component) {
+var DraftEditorPlaceholder = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(DraftEditorPlaceholder, _React$Component);
 
   function DraftEditorPlaceholder() {

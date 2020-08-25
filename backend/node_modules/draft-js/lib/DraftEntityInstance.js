@@ -33,9 +33,7 @@ var DraftEntityInstanceRecord = Record({
  * a hovercard.
  */
 
-var DraftEntityInstance =
-/*#__PURE__*/
-function (_DraftEntityInstanceR) {
+var DraftEntityInstance = /*#__PURE__*/function (_DraftEntityInstanceR) {
   _inheritsLoose(DraftEntityInstance, _DraftEntityInstanceR);
 
   function DraftEntityInstance() {

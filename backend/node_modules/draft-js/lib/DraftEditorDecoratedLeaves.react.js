@@ -27,9 +27,7 @@ var UnicodeBidi = require("fbjs/lib/UnicodeBidi");
 
 var UnicodeBidiDirection = require("fbjs/lib/UnicodeBidiDirection");
 
-var DraftEditorDecoratedLeaves =
-/*#__PURE__*/
-function (_React$Component) {
+var DraftEditorDecoratedLeaves = /*#__PURE__*/function (_React$Component) {
   _inheritsLoose(DraftEditorDecoratedLeaves, _React$Component);
 
   function DraftEditorDecoratedLeaves() {

@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exams",
+  "info": {
+    "name": "exam"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "biginteger"
+    }
+  }
+}

@@ -66,9 +66,7 @@ var decorateCharacterList = function decorateCharacterList(config) {
   return config;
 };
 
-var ContentBlockNode =
-/*#__PURE__*/
-function (_ref) {
+var ContentBlockNode = /*#__PURE__*/function (_ref) {
   _inheritsLoose(ContentBlockNode, _ref);
 
   function ContentBlockNode() {

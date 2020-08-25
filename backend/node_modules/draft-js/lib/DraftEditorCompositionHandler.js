@@ -20,6 +20,8 @@ var EditorState = require("./EditorState");
 
 var Keys = require("fbjs/lib/Keys");
 
+var UserAgent = require("fbjs/lib/UserAgent");
+
 var editOnSelect = require("./editOnSelect");
 
 var getContentEditableContainer = require("./getContentEditableContainer");
@@ -29,6 +31,8 @@ var getDraftEditorSelection = require("./getDraftEditorSelection");
 var getEntityKeyForSelection = require("./getEntityKeyForSelection");
 
 var nullthrows = require("fbjs/lib/nullthrows");
+
+var isIE = UserAgent.isBrowser('IE');
 /**
  * Millisecond delay to allow `compositionstart` to fire again upon
  * `compositionend`.
@@ -39,7 +43,6 @@ var nullthrows = require("fbjs/lib/nullthrows");
  * leads to composed characters being resolved and re-render occurring
  * sooner than we want.
  */
-
 
 var RESOLVE_DELAY = 20;
 /**
@@ -124,7 +127,7 @@ var DraftEditorCompositionHandler = {
    * characters that we do not want. `preventDefault` allows the composition
    * to be committed while preventing the extra characters.
    */
-  onKeyPress: function onKeyPress(editor, e) {
+  onKeyPress: function onKeyPress(_editor, e) {
     if (e.which === Keys.RETURN) {
       e.preventDefault();
     }
@@ -211,8 +214,13 @@ var DraftEditorCompositionHandler = {
 
     var documentSelection = getDraftEditorSelection(editorState, getContentEditableContainer(editor));
     var compositionEndSelectionState = documentSelection.selectionState;
-    editor.restoreEditorDOM();
-    var editorStateWithUpdatedSelection = EditorState.acceptSelection(editorState, compositionEndSelectionState);
+    editor.restoreEditorDOM(); // See:
+    // - https://github.com/facebook/draft-js/issues/2093
+    // - https://github.com/facebook/draft-js/pull/2094
+    // Apply this fix only in IE for now. We can test it in
+    // other browsers in the future to ensure no regressions
+
+    var editorStateWithUpdatedSelection = isIE ? EditorState.forceSelection(editorState, compositionEndSelectionState) : EditorState.acceptSelection(editorState, compositionEndSelectionState);
     editor.update(EditorState.push(editorStateWithUpdatedSelection, contentState, 'insert-characters'));
   }
 };
