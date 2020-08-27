@@ -1,34 +1,37 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import '../css/topMenuComponent.css'
 import quiz from '../quiz.svg';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+//
 function TopMenu() {
   return (
-    <div className="header">
-      <div className="nav">
-        <input type="checkbox" id="nav-check"/>
-        <div className="nav-header">
-          <div className="nav-title">
-            <img src={quiz} className="App-logo" alt="logo" />
-          </div>
-        </div>
-
-        <div className="nav-btn">
-        <label htmlFor="nav-check">
-          <span></span>
-          <span></span>
-          <span></span>
-        </label>
-        </div>
-
-        <div className="nav-links">
-          <NavLink to="/">Anasayfa</NavLink>
-          <NavLink to="/quiz">Sınavı Başla</NavLink>
-          <NavLink to="/login">Giriş</NavLink>
-        </div>
-      </div>
-    </div>
+    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+      <Navbar.Brand href="#home"><img src={quiz} className="App-logo" alt="logo" /></Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="fiyatlar">Fiyatlar</Nav.Link>
+          <Nav.Link href="/quiz">Sınavı Başla</Nav.Link>
+          <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+        <Nav>
+          <Nav.Link href="#deets">More deets</Nav.Link>
+          <Nav.Link eventKey={2} href="#memes">
+            Dank memes
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+</Navbar>
   );
 }
 

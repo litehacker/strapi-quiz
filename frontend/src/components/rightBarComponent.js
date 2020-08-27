@@ -64,7 +64,4 @@ const RightBar = () =>{
       </div>
   );
 }
-// systemctl stop nginx
-// /opt/letsencrypt/certbot-auto renew
-// systemctl start nginx
 export default RightBar;

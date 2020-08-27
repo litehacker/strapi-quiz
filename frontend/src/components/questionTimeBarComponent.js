@@ -29,7 +29,4 @@ function TimeBar() {
         </div>
   );
 }
-// systemctl stop nginx
-// /opt/letsencrypt/certbot-auto renew
-// systemctl start nginx
 export default TimeBar;

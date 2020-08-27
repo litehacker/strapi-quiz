@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+
 function QuestionButtons() {
   return (
         <div>
@@ -10,7 +11,4 @@ function QuestionButtons() {
         </div>
   );
 }
-// systemctl stop nginx
-// /opt/letsencrypt/certbot-auto renew
-// systemctl start nginx
 export default QuestionButtons;

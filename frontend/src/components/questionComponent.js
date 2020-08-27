@@ -6,7 +6,8 @@ import '../css/questionComponent-radio.css';
 
 function Question() {
   return (
-    <div className="col-12 shadow">
+    
+    <div className="col-sm-12 shadow">
       <span>Q:96 </span>
       <div className="question ">
         <p className="questionText">
