@@ -10,32 +10,37 @@ export default class SignUp extends Component {
                 <div className="col-sm-3"></div>
                 <div className="col-sm-6">
                     <form>
-                    <h3>Sign Up</h3>
+                    <h3>Üye Kaydı</h3>
 
                     <div className="form-group">
-                        <label>First name</label>
-                        <input type="text" className="form-control" placeholder="First name" />
+                        <label>İsim</label>
+                        <input type="text" className="form-control" placeholder="Adınızı yazınız" />
                     </div>
 
                     <div className="form-group">
-                        <label>Last name</label>
-                        <input type="text" className="form-control" placeholder="Last name" />
+                        <label>Soyisim</label>
+                        <input type="text" className="form-control" placeholder="Soyadınızı Yazınız" />
                     </div>
 
                     <div className="form-group">
-                        <label>Email address</label>
-                        <input type="email" className="form-control" placeholder="Enter email" />
+                        <label>Email adresi</label>
+                        <input type="email" className="form-control" placeholder="Email adresi giriniz" />
                     </div>
 
                     <div className="form-group">
-                        <label>Password</label>
-                        <input type="password" className="form-control" placeholder="Enter password" />
+                        <label>şifre</label>
+                        <input type="password" className="form-control" placeholder="Şifrenizi Kaydedin" />
                     </div>
 
                     <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-                    <p className="forgot-password text-right">
-                        Already registered <Link to="#">sign in?</Link>
-                    </p>
+                    <div className="d-flex">
+                        <p className="forgot-password mr-auto">
+                            Üyeliğiniz var mı? <Link to="/login">Giriş Yapın</Link>
+                        </p>
+                        <p className="forgot-password">
+                            Şifremi <Link to="şifremi-unuttum">unuttum</Link>
+                        </p>
+                    </div>
                 </form>
                 </div>
                 <div className="col-sm-3"></div>
