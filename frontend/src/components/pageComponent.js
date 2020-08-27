@@ -9,17 +9,19 @@ const LandingPage = lazy(() => import("./landingPageComponent.js"));
 
 const Page = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    
+    
       <Router>
-        <Header/>
+      <Header/>
         <Switch>
-          <Route path="/" exact component={LandingPage}/>
-          <Route path="/quiz" component={Question}/>
-          <Route path="/login" component={Login}/>
-          <Route path="/register" component={Register}/>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Route path="/" exact component={LandingPage}/>
+            <Route path="/quiz" component={Question}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register}/>
+          </Suspense>
         </Switch>
       </Router>
-    </Suspense>
   );
 }
 export default Page;
