@@ -21,7 +21,6 @@ function _404Component() {
             </Alert>
           ))
           }
-          <h3 className=""></h3>
           <img style={{ width: '100%', height: 'auto'}} src={image404} alt="404 page"/>
           <a style={{'fontSize': '5px'}} href="http://www.freepik.com">Designed by pikisuperstar / Freepik</a>  
           </div>

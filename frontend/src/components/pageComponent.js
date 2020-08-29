@@ -12,6 +12,8 @@ const _404Component = lazy(() => import("../pages/_404Page.js"));
 const Hakkimizda = lazy(() => import("../pages/hakkımızdaPage.js"));
 const Contact = lazy(() => import("../pages/contactPage.js"));
 const ForgotPassword = lazy(() => import("../pages/forgotPasswordPage.js"));
+const Profile = lazy(() => import("./profile.component.js"));
+
 const Page = () => {
   return (
     <Router>
@@ -31,6 +33,7 @@ const Page = () => {
             <Route path="/register" component={Register}/>
             <Route path="/bize-ulaş" component={Contact}/>
             <Route path="/şifremi-unuttum" component={ForgotPassword}/>
+            <Route path="/profil" component={Profile}/>
             <Route path='*' exact={true} component={_404Component} />
 
         </Switch>
