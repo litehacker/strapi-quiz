@@ -22,7 +22,7 @@ Sınavı girişini yapıp her kaydolmuş kullanıcımız sınavını başlatabil
 ```json
 // Response from Strapi
 {
-	"q_number": 1, #soru ID'si değil
+	"q_number": 1, //soru ID'si değil
 	"q_text": "Soru diyor ki Strapi nedir?",
 	"q_variants": 
 	[
