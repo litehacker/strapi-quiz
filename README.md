@@ -22,16 +22,16 @@ Sınavı girişini yapıp her kaydolmuş kullanıcımız sınavını başlatabil
 ```json
 // Response from Strapi
 {
-	q_number: 1, //soru ID'si değil
-	q_text: 'Soru diyor ki Strapi nedir?',
-	q_variants: 
+	"q_number": 1, //soru ID'si değil
+	"q_text": "Soru diyor ki Strapi nedir?",
+	"q_variants": 
 	[
-		'Wordpress',
-		'Site',
-		'Headless CMS',
-		'API'
+		"Wordpress",
+		"Site",
+		"Headless CMS",
+		"API"
 	],
-	user _answer: '',
+	"user _answer": "",
 }
 ```
 Cevaplandıkça kullanıcının verdiği cevaplar işlenecek.
@@ -47,8 +47,8 @@ Sorular arasında geçiş yapacak kullanıcımız geçiş yapmadan önce işaret
 ```json
 // JWT headerin Bearer Token olarak gidecektir.
 {
-	q_number: 12,
-	user_answer: 'dogru cevap',
+	"q_number": 12,
+	"user_answer": "dogru cevap",
 }
 ```
 Sorularının geçiş yapıldığında, daha önce verilen cevaplar olduğu gibi gelecektir (aynı soruya tekrar cevap vermemek için).  
@@ -56,19 +56,19 @@ Response olarak da:
 ```json
 // Response from Strapi
 {
-	q_number: 2, //soru ID'si değil
-	q_text: 'Soru diyor ki Strapi hangi dil kullanmıyor?',
-	q_variants: 
+	"q_number": 2, //soru ID'si değil
+	"q_text": "Soru diyor ki Strapi hangi dil kullanmıyor?",
+	"q_variants": 
 	[
-		'PHP',
-		'JS',
-		'CSS',
-		'TS'
+		"PHP",
+		"JS",
+		"CSS",
+		"TS"
 	],
 	//kullanıcının daha önce verdiği cevap (varsa)
-	user_answer: 'PHP',
+	"user_answer": "PHP",
 	// değilse
-	user_answer: '',
+	"user_answer": "",
 }
 ```
  Soru geçişi esnasında sorularının cevabı değişti ise, kullanıcının sorular dizisinde saklanan cevapları da değişecektir.
@@ -78,8 +78,8 @@ Sınavını tamamlamak için kullanıcımız `/sinav/submit` yapıp son sorusunu
 ```json
 // JWT headerin Bearer Token olarak gidecektir.
 {
-	q_number: 150,
-	user_answer: 'dogru cevap',
+	"q_number": 150,
+	"user_answer": "dogru cevap",
 }
 ```
 Sumbit ettikten sonra sorular karşılaştırılıp kullanıcının o sınav denemesindeki puanı yazılacak. Veri tabanında o kullanıcının yeni sınav denemesi eklenecek. İsterse sorulmuş sorularının hepsine göz atabilir.
