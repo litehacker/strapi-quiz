@@ -57,7 +57,17 @@ export default class Login extends Component {
         if (this.checkBtn.context._errors.length === 0) {
           AuthService.login(this.state.identifier, this.state.password).then(
             () => {
-                this.props.history.push("/profil");
+              
+                if(AuthService.getCurrentUser())
+                { 
+                  this.props.history.push("/profil");
+                }
+                else{
+                  this.setState({
+                    loading: false,
+                    message: 'Sistem Hatası: Giriş Başarısız'
+                  });
+                }
                 //window.location.reload();
             },
             error => {
