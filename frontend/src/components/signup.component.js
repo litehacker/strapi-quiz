@@ -1,52 +1,60 @@
-import React, { Component } from "react";
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react'  
+import axios from 'axios';  
 
-export default class SignUp extends Component {
-    render() {
-        return (
-            <div className="container">
-            <div className="row">
-            <div className="col-sm-12 ">
-                <div className="col-sm-3"></div>
-                <div className="col-sm-6">
-                    <form>
-                    <h3>Üye Kaydı</h3>
-
-                    <div className="form-group">
-                        <label>İsim</label>
-                        <input type="text" className="form-control" placeholder="Adınızı yazınız" />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Soyisim</label>
-                        <input type="text" className="form-control" placeholder="Soyadınızı Yazınız" />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Email adresi</label>
-                        <input type="email" className="form-control" placeholder="Email adresi giriniz" />
-                    </div>
-
-                    <div className="form-group">
-                        <label>şifre</label>
-                        <input type="password" className="form-control" placeholder="Şifrenizi Kaydedin" />
-                    </div>
-
-                    <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-                    <div className="d-flex">
-                        <p className="forgot-password mr-auto">
-                            Üyeliğiniz var mı? <Link to="/login">Giriş Yapın</Link>
-                        </p>
-                        <p className="forgot-password">
-                            Şifremi <Link to="şifremi-unuttum">unuttum</Link>
-                        </p>
-                    </div>
-                </form>
-                </div>
-                <div className="col-sm-3"></div>
-            </div>
-            </div>
-            </div>
-        );
-    }
-}
+function Regster(props) {  
+  const [data, setdata] = useState({username:'', email: '', password: '',  })  
+  const apiUrl = "http://localhost:1337/auth/local/register";  
+  const Registration = (e) => {  
+    e.preventDefault();  
+    const data1 = { username:data.username, email:data.email, password:data.password};  
+    axios.post(apiUrl, data1)  
+      .then((result) => {  
+        console.log(result.data);  
+        if (result.data.Status === 'Invalid')  
+          alert('Invalid User');  
+        else  
+          props.history.push('/profil')  
+      })  
+  }  
+  const onChange = (e) => {  
+    e.persist();  
+    setdata({ ...data, [e.target.name]: e.target.value });  
+  }  
+  return (  
+    <div class="container">  
+      <div class="card o-hidden border-0 shadow-lg my-5" style={{ "marginTop": "5rem!important;" }}>  
+        <div class="card-body p-0">  
+          <div class="row">  
+            <div class="col-lg-12">  
+              <div class="p-5">  
+                <div class="text-center">  
+                  <h1 class="h4 text-gray-900 mb-4">Create a New User</h1>  
+                </div>  
+                <form onSubmit={Registration} class="user">  
+                  <div class="form-group row">  
+                    <div class="col-sm-6 mb-3 mb-sm-0">  
+                      <input type="text" name="username" onChange={onChange} value={data.username} class="form-control"  placeholder="username" />  
+                    </div>  
+                    <div class="col-sm-6 mb-3 mb-sm-0">  
+                      <input type="text" name="email" onChange={onChange} value={data.email} class="form-control"  placeholder="Email" />  
+                    </div>  
+                    <div class="col-sm-6">  
+                      <input type="Password" name="password" onChange={onChange} value={data.password} class="form-control" placeholder="Password" />  
+                    </div>  
+                  </div>  
+                  <button type="submit" class="btn btn-primary  btn-block">  
+                    Create User  
+                </button>  
+                  <hr />  
+                </form>  
+                <hr />  
+              </div>  
+            </div>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  )  
+}  
+  
+export default Regster 
