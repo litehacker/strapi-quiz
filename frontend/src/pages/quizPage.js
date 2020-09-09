@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from "react";
-//import LeftBar from '../components/leftBarComponent.js';
+import LeftBar from '../components/leftBarComponent.js';
 import RightBar from '../components/rightBarComponent.js';
 import Question from '../components/questionComponent.js';
 import UserService from "../services/user.service";
@@ -31,6 +31,7 @@ function Page() {
     
         <div className="col-sm-12 ">
           <div className="col-sm-3">
+          <LeftBar/>
           <h3>{content}</h3>
           </div>
           <div className="col-sm-6" >
