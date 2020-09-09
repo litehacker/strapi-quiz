@@ -7,19 +7,21 @@ import UserService from "../services/user.service";
 function Page() {
   const [content, setContent] = useState([]);
   
-  useEffect(() => UserService.getUserBoard('/exams').then(
-    response => {
-      console.log(response.data[0])
-      setContent(response.data.toString());
-    },
-    error => {
-      setContent(error.response &&
-        error.response.data &&
-        error.response.data.message) ||
-        error.message ||
-        error.toString()
-    }
-  ), []);
+  useEffect(() => {
+    UserService.getUserBoard('/exams').then(
+      response => {
+        console.log(response.data[0])
+        setContent(response.data.toString());
+      },
+      error => {
+        setContent(error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+          error.message ||
+          error.toString()
+      }
+    )
+  }, []);
 
 
 
