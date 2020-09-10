@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import axios from 'axios';  
 import image from '../img/register.svg'
 
-function Regster(props) {  
+function Regster() {  
     const [data, setdata] = useState({username:'', email: '', password: '',  })  
     const apiUrl = "http://localhost:1337/auth/local/register";  
     const [errorMessage, setErrorMessage] = useState('');
@@ -50,7 +50,7 @@ function Regster(props) {
                     </div>  
                     <form onSubmit={Registration} className="user"> 
                         {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
-  {success && <div className="alert alert-success" role="alert">Merhaba! Kaydınız başarıyla oluşmuş. <br></br> Lütfen {success} mail adresinizi kontrol edip üyeliğinizi onayladıktan sonra, <Link to="login">giriş yapınız</Link></div>}
+                        {success && <div className="alert alert-success" role="alert">Merhaba! Kaydınız başarıyla oluşmuş. <br></br> Lütfen {success} mail adresinizi kontrol edip üyeliğinizi onayladıktan sonra, <Link to="login">giriş yapınız</Link></div>}
                         {success=== '' && 
                         <>
                             <div className="form-group">
@@ -67,7 +67,7 @@ function Regster(props) {
                             </div> 
                         
                             <button type="submit" className="btn btn-primary  btn-block">  
-                                Create User  
+                                Kaydol  
                             </button>  
                         </>
                         }
@@ -87,7 +87,7 @@ function Regster(props) {
                     }     
                 </div>
             </div>  
-            <div className="col-lg-5 align-self-center px-5">
+            <div className="col-lg-7 align-self-center px-5">
                 <img src={image} alt="register" style={{'maxWidth':'100%'}}/>
             </div>
           </div>  

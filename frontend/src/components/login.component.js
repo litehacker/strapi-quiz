@@ -1,157 +1,81 @@
-import React, { Component } from "react";
+import React , {useState} from "react";
 import {Link} from 'react-router-dom';
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-
-import AuthService from "../services/auth.service";
-
-
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
+import axios from 'axios';  
+import image from '../img/register.svg'
   
-export default class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.handleLogin = this.handleLogin.bind(this);
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
+function Login() {
+  const [data, setdata] = useState({username:'', password: '',  });
+  const apiUrl = "http://localhost:1337/auth/local";  
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success, setSuccess] = useState('');
+  let submition={}
+
+  const Authentication = (e) => {
+    e.preventDefault();  
+    const inputData = { identifier:data.username, password:data.password};  
     
-        this.state = {
-          identifier: "",
-          password: "",
-          loading: false,
-          message: ""
-        };
+    axios.post(apiUrl, inputData)
+    .then(response =>{
+        // Handle success.
+        submition.user = response.data.user
+        submition.jwt = response.data.jwt
+        setSuccess(response.data.user.email)
+        setErrorMessage('')
+    })
+    .catch(error =>{
+      if (error.response) {
+        setSuccess('')
+        setErrorMessage(error.response.data.message[0].messages[0].message)
+        submition.errorStatus = error.response.status
+        submition.data = error.response.data
+        submition.errorMessage = error.response.data.message[0].messages[0].message
       }
-    
-      onChangeUsername(e) {
-        this.setState({
-          identifier: e.target.value
-        });
-      }
-    
-      onChangePassword(e) {
-        this.setState({
-          password: e.target.value
-        });
-      }
-    
-      handleLogin(e) {
-        e.preventDefault();
-    
-        this.setState({
-          message: "",
-          loading: true
-        });
-    
-        this.form.validateAll();
-    
-        if (this.checkBtn.context._errors.length === 0) {
-          AuthService.login(this.state.identifier, this.state.password).then(
-            () => {
-              
-                if(AuthService.getCurrentUser())
-                { 
-                  this.props.history.push("/profil");
-                }
-                else{
-                  this.setState({
-                    loading: false,
-                    message: 'Sistem Hatası: Giriş Başarısız'
-                  });
-                }
-                //window.location.reload();
-            },
-            error => {
-              const resMessage =
-                (error.response) ||
-                error.message ||
-                error.toString();
-                
-              this.setState({
-                loading: false,
-                message: resMessage
-              });
-            }
-          );
-        } else {
-          this.setState({
-            loading: false
-          });
-        }
-      }
+    });
 
-    render() {
-        return (
-            <div className="container">
-            <div className="row">
-            <div className="col-sm-12 ">
-                <div className="col-sm-3">
-                    
-                </div>
-                <div className="col-sm-6" >
-                {this.state.message && (
-                        <div className="form-group">
-                            <div className="alert alert-danger" role="alert">
-                            {this.state.message}
-                            </div>
-                        </div>
-                        )}
-                <Form onSubmit={this.handleLogin}
-                    ref={c => {
-                    this.form = c;
-                    }}>
-                        <h3>Üye Girişi</h3>
-
-                        <div className="form-group">
-                            <label>Email</label>
-                            <Input type="email" className="form-control" placeholder="Email adresinizi yazınız" 
-                            name="identifier"
-                            value={this.state.identifier}
-                            onChange={this.onChangeUsername}
-                            validations={[required]}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Şifre</label>
-                            <Input type="password" className="form-control" placeholder="Şifrenizi Giriniz" 
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.onChangePassword}
-                            validations={[required]}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                                <label className="custom-control-label" htmlFor="customCheck1">Beni Hatırla</label>
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <button
-                                className="btn btn-primary btn-block"
-                                disabled={this.state.loading}
-                            >
-                                {this.state.loading && (
-                                <span className="spinner-border spinner-border-sm"></span>
-                                )}
-                                <span>Login</span>
-                            </button>
-                            
-                        </div>
-                        
-                        <div className="d-flex">
+    console.log(submition)
+  }
+      
+  const onChange = (e) => {  
+    e.persist();  
+    setdata({ ...data, [e.target.name]: e.target.value });  
+  }   
+  return (
+    <div className="container">  
+    <div className="card o-hidden border-0 shadow-lg my-5" style={{ "marginTop": "5rem!important" }}>  
+      <div className="card-body p-0">  
+        <div className="row">  
+          <div className="col-lg-7 align-self-center px-5">
+              <img src={image} alt="register" style={{'maxWidth':'100%'}}/>
+          </div>
+          <div className="col-lg-5">  
+              <div className="p-5">  
+                  <div className="text-center">  
+                  <h1 className="h4 text-gray-900 mb-4">Üye Girişi</h1>  
+                  </div>  
+                  <form onSubmit={Authentication} className="user"> 
+                      {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
+                      {success && <div className="alert alert-success" role="alert">Merhaba! Girişiniz Başarılı.</div>}
+                      {success=== '' && 
+                      <>
+                          <div className="form-group">
+                              <label>Kullanıcı Adı</label>
+                              <input type="text" name="username" onChange={onChange} value={data.username} className="form-control" placeholder="Email ya da kullanıcı adınızı giriniz" />
+                          </div> 
+                          <div className="form-group">
+                              <label>Şifrenizi Oluşturun</label>
+                              <input type="password" name="password" onChange={onChange} value={data.password} className="form-control"placeholder=" * * * * * *" />
+                          </div> 
+                      
+                          <button type="submit" className="btn btn-primary  btn-block">  
+                              Girişi Tamamla  
+                          </button>  
+                      </>
+                      }
+                  </form>  
+                  {success=== '' && 
+                  <>
+                      <hr />  
+                      <div className="d-flex">
                             <p className="forgot-password mr-auto">
                                 Üyeliğiniz mi yok? <Link to="/register">Kaydolun</Link>
                             </p>
@@ -159,22 +83,16 @@ export default class Login extends Component {
                             Şifremi <Link to="şifremi-unuttum">unuttum</Link>
                             </p>
                         </div>
-                        
-                        <CheckButton
-                        style={{ display: "none" }}
-                        ref={c => {
-                            this.checkBtn = c;
-                        }}
-                        />
-                    </Form>
-                </div>
-                <div className="col-sm-3">
-                        
-                </div>
-            </div>
-            </div>
-            </div>
-            
-        );
-    }
+                  </>
+                  }     
+              </div>
+          </div>  
+          
+        </div>  
+      </div>  
+    </div>  
+  </div>  
+  );
+
 }
+export default Login;
