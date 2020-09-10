@@ -8,14 +8,14 @@ import AuthService from "../services/auth.service";
 
 
 const required = value => {
-    if (!value) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This field is required!
-        </div>
-      );
-    }
-  };
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
   
 export default class Login extends Component {
     constructor(props) {
