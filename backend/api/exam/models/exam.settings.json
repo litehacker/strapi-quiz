@@ -12,11 +12,11 @@
     "title": {
       "type": "string"
     },
-    "endTime": {
-      "type": "biginteger"
-    },
-    "questionNumber": {
+    "exam_time": {
       "type": "integer"
+    },
+    "price": {
+      "type": "decimal"
     }
   }
 }

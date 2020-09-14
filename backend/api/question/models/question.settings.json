@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "name": "question"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "question_text": {
+      "type": "text"
+    },
+    "A": {
+      "type": "string"
+    },
+    "B": {
+      "type": "string"
+    },
+    "C": {
+      "type": "string"
+    },
+    "D": {
+      "type": "string"
+    },
+    "E": {
+      "type": "string"
+    },
+    "Answer": {
+      "type": "enumeration",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    "topic": {
+      "model": "topic"
+    },
+    "exam": {
+      "model": "exam"
+    }
+  }
+}

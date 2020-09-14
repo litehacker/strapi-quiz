@@ -2,7 +2,10 @@ import React, {useEffect,useState} from "react";
 import LeftBar from '../components/leftBarComponent.js';
 import RightBar from '../components/rightBarComponent.js';
 import Question from '../components/questionComponent.js';
+import Alert from 'react-bootstrap/Alert'
+
 import UserService from "../services/user.service";
+import AuthService from "../services/auth.service";
 
 function Page() {
   const [content, setContent] = useState([]);
@@ -10,7 +13,6 @@ function Page() {
   useEffect(() => {
     UserService.getUserBoard('/exams').then(
       response => {
-        console.log(response.data[0])
         setContent(response.data.toString());
       },
       error => {
@@ -23,25 +25,56 @@ function Page() {
     )
   }, []);
 
+  const currentUser = AuthService.getCurrentUser()
 
-
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-12 ">
-          <div className="col-sm-3">
-          <LeftBar/>
-          <h3>{content}</h3>
-          </div>
-          <div className="col-sm-6" >
-            <Question/>
-          </div>
-          <div className="col-sm-3">
-            <RightBar/>
+  if (currentUser){
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12 ">
+            <div className="col-sm-3">
+            {//<LeftBar/>
+            }
+            <h3>{content}</h3>
+            </div>
+            <div className="col-sm-6" >
+              <Question/>
+            </div>
+            <div className="col-sm-3">
+              <RightBar/>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  else{
+    return(
+      <div className="container">
+      <div className="row">
+        <div className="col-sm-12 ">
+          <div className="col-sm-2">
+            
+          </div>
+          <div className="col-sm-8" >
+          {[
+            'warning',
+          ].map((variant, idx) => (
+            <Alert key={idx} variant={variant}>
+              Öncelikle sisteme güriş yapınız. Dilerseniz {' '}
+              <Alert.Link href="/login">Giriş Sayfasına </Alert.Link>
+              geçin.
+            </Alert>
+          ))
+          }  
+          </div>   
+          <div className="col-sm-2">
+            
+          </div> 
+        </div>
+      </div>
+    </div>    
+    )
+  }
 }
 export default Page;

@@ -1,14 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect}from 'react';
 import quiz from '../quiz.svg';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useHistory } from "react-router-dom";
+
+import AuthService from "../services/auth.service";
+
 
 //
 function TopMenu() {
+  const [currentUser] = useState(AuthService.getCurrentUser());
+  const history = useHistory();
+
+  useEffect(() => {
+    if (currentUser)
+      document.title = 'Merhaba ' + currentUser.user.username;
+  });
   return (
-    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" >
       <Navbar.Brand href="/"><img src={quiz} className="App-logo" alt="logo" /></Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -27,7 +38,7 @@ function TopMenu() {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link href="login">Giriş Yap</Nav.Link>
+          { !currentUser ? <Nav.Link href="login">Giriş Yap</Nav.Link>:<Nav.Link onClick={()=> AuthService.logout(history)}> Çıkış Yap</Nav.Link>  }
           <Nav.Link href="bize-ulaş">Bize Ulaş</Nav.Link>
         </Nav>
       </Navbar.Collapse>

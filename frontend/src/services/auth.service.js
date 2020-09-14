@@ -1,8 +1,11 @@
 import axios from "axios";
+//import { useHistory } from "react-router-dom";
 
 const API_URL = "http://localhost:1337/auth/local";
 
 class AuthService {
+  
+
   async login(identifier, password) {
 
     return axios
@@ -27,9 +30,10 @@ class AuthService {
     
   }
 
-    logout() {
-        localStorage.removeItem("user");
-    }
+  logout(history){
+      localStorage.removeItem("user");
+      history.push('/login');
+  }
 
   register(username, email, password) {
     return axios.post(API_URL + "/register", {

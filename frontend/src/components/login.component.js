@@ -2,13 +2,16 @@ import React , {useState} from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';  
 import image from '../img/register.svg'
-  
+import { useHistory } from "react-router-dom";
+
 function Login() {
   const [data, setdata] = useState({username:'', password: '',  });
   const apiUrl = "http://localhost:1337/auth/local";  
   const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState('');
   let submition={}
+
+  let history = useHistory();
 
   const Authentication = (e) => {
     e.preventDefault();  
@@ -18,7 +21,9 @@ function Login() {
     .then(response =>{
         // Handle success.
         submition.user = response.data.user
-        submition.jwt = response.data.jwt
+        if (response.data.jwt) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+        }
         setSuccess(response.data.user.email)
         setErrorMessage('')
     })
@@ -54,7 +59,7 @@ function Login() {
                   </div>  
                   <form onSubmit={Authentication} className="user"> 
                       {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
-                      {success && <div className="alert alert-success" role="alert">Merhaba! Girişiniz Başarılı.</div>}
+                      {success && setTimeout(()=>history.push('/profil'), 2000) && <div className="alert alert-success" role="alert">Merhaba! Girişiniz Başarılı.</div>}
                       {success=== '' && 
                       <>
                           <div className="form-group">
@@ -65,7 +70,6 @@ function Login() {
                               <label>Şifrenizi Oluşturun</label>
                               <input type="password" name="password" onChange={onChange} value={data.password} className="form-control"placeholder=" * * * * * *" />
                           </div> 
-                      
                           <button type="submit" className="btn btn-primary  btn-block">  
                               Girişi Tamamla  
                           </button>  

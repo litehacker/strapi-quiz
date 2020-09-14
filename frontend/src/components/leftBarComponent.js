@@ -20,7 +20,6 @@ const questions = [
 
 const LeftBar = () => {
   return (
-
           <div className="carousel">
             <Slider
               focus={4}

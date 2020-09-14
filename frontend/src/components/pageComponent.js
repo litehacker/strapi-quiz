@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Header from "./topMenuComponent";
 import Spinner from 'react-bootstrap/Spinner';
+import AuthService from "../services/auth.service";
 
 // pages
 const Question = lazy(() => import("../pages/quizPage.js"));
@@ -27,13 +28,13 @@ const Page = () => {
       }>
         <Switch>
             <Route path="/" exact component={LandingPage}/>
-            <Route path="/deneme-sınavı" component={Question}/>
             <Route path="/hakkımızda" component={Hakkimizda }/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
             <Route path="/bize-ulaş" component={Contact}/>
             <Route path="/şifremi-unuttum" component={ForgotPassword}/>
-            <Route path="/profil" component={Profile}/>
+            <Route path="/profil" exact component={() => <Profile currentUser={AuthService.getCurrentUser()} />}/>
+            <Route path="/deneme-sınavı" exact component={() => <Question currentUser={AuthService.getCurrentUser()} />}/>
             <Route path='*' exact={true} component={_404Component} />
 
         </Switch>

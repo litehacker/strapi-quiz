@@ -1,47 +1,51 @@
-import React, { Component } from "react";
-import AuthService from "../services/auth.service";
+import React from "react";
+import Alert from 'react-bootstrap/Alert'
 
-export default class Profile extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentUser: AuthService.getCurrentUser()
-    };
-  }
-
-  render() {
-    const { currentUser } = this.state;
-    if (currentUser)
+export default function Profile (props){
+  
+  if (props.currentUser)
     {
-        return (
-        <div className="container">
-          <header className="jumbotron">
-            <h3>
-              <strong>{currentUser.user.username}</strong> Profile
-            </h3>
-          </header>
-          <p>
-            <strong>Token:</strong>{" "}
-            {currentUser.jwt.substring(0, 20)} ...{" "}
-            {currentUser.jwt.substr(currentUser.jwt.length - 20)}
-          </p>
-          <p>
-            <strong>Id:</strong>{" "}
-            {currentUser.user.id}
-          </p>
-          <p>
-            <strong>Email:</strong>{" "}
-            {currentUser.user.email}
-          </p>
-          <strong>Authorities:</strong>
-            { currentUser.user.role.name }
+      return (
+      <div className="container">
+        <header className="jumbotron">
+          <h3>
+            <strong>{props.currentUser.user.username}</strong> kullanıcı profili
+          </h3>
+        </header>
+        <p>
+          <strong>Kullanıcı ID:</strong>{" "}
+          {props.currentUser.user.id}
+        </p>
+      </div>
+    );
+  }
+  else
+  {
+    return(
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12 ">
+            <div className="col-sm-2">
+              
+            </div>
+            <div className="col-sm-8" >
+            {[
+              'warning',
+            ].map((variant, idx) => (
+              <Alert key={idx} variant={variant}>
+                Öncelikle sisteme güriş yapınız. Dilerseniz {' '}
+                <Alert.Link href="/login">Giriş Sayfasına </Alert.Link>
+                geçin.
+              </Alert>
+            ))
+            }  
+            </div>   
+            <div className="col-sm-2">
+              
+            </div> 
+          </div>
         </div>
-      );
-    }
-    else
-      {
-        return(<div>Girişi Tamamlanmamış Profil denemesi</div>);
-      }
+      </div>    
+    );
   }
 }
