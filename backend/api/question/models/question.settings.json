@@ -10,7 +10,8 @@
   },
   "attributes": {
     "question_text": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "A": {
       "type": "string"
@@ -35,7 +36,8 @@
         "C",
         "D",
         "E"
-      ]
+      ],
+      "required": true
     },
     "topic": {
       "model": "topic"

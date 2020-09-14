@@ -13,7 +13,7 @@ function FormComponent(){
             <form id="contact-form">
                 <div className="contact-top">
                     <h3 className="contact-title p-2">Ücretsiz Kaydolun</h3>
-                    <h5 className="text-secondary fw-3 py-3">Yüklediğiniz dosyalara erişip, dilediğiniz hizmetinin seçin.</h5>
+                    <h5 className="text-secondary fw-3 py-3">Deneme sınavına girmek için, hemen ücretsiz katılın!</h5>
                 </div>
                 <div className="row">
                         <div className="col-12">
@@ -29,12 +29,14 @@ function FormComponent(){
                         </div>
                    
                         <div className="col-12">
-                        <Button size="lg" href="#" variant="outline-purple" >Üye Ekle</Button>
+                        <Button size="lg" href="#" variant="outline-primary" >Üye Ol</Button>
                             <div className="contact-bottom">
-                                <span className="d-inline-block mt-3">By signing up, you accept our 
-                                    <a href="/#">Terms</a> 
-                                    &amp; 
-                                    <a href="/#">Privacy Policy</a>
+                                <span className="d-inline-block mt-3">
+                                    Üye olunarak, 
+                                    <a href="/#"> Kullanım Kuralları</a> 
+                                    ve 
+                                    <a href="/#"> Kişisel Veri Korunması </a>
+                                    şartlarımızı kabul etmiş olmaktasınız.
                                 </span>
                             </div>
                         </div>
@@ -47,7 +49,7 @@ function FormComponent(){
             <form id="login">
                 <div className="contact-top">
                     <h3 className="contact-title p-2">Giriş Yapınız</h3>
-                    <h5 className="text-secondary fw-3 py-3">Sipariş takibi ve dosyalarınıza erişmek için sisteme giriş yapın.</h5>
+                    <h5 className="text-secondary fw-3 py-3">Sınav sonuçlarının takip edip, rekabeti ölçebilirsiniz.</h5>
                 </div>
                 <div className="row">
                     <div className="col-12">
@@ -59,12 +61,14 @@ function FormComponent(){
                         </div>
                     </div>
                     <div className="col-12">
-                    <Button size="lg" href="#" variant="outline-purple" style={{marginBottom:'54px'}}>Giriş Yap</Button>
+                    <Button size="lg" href="#" variant="outline-primary" style={{marginBottom:'54px'}}>Giriş Yap</Button>
                         <div className="contact-bottom">
-                            <span className="d-inline-block mt-3">By signing up, you accept our 
-                                <a href="/#">Terms</a> 
-                                &amp; 
-                                <a href="/#">Privacy Policy</a>
+                            <span className="d-inline-block mt-3">
+                                Giriş yaparak, 
+                                <a href="/#"> Kullanım Kuralları</a> 
+                                ve 
+                                <a href="/#"> Kişisel Veri Korunması </a>
+                                şartlarımızı kabul etmiş olmaktasınız.
                             </span>
                         </div>
                     </div>
