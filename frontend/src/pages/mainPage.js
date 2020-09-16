@@ -13,9 +13,9 @@ function Main() {
             <div className="row align-items-center justify-content-center">
               <div className="col-12 col-lg-7">
                 <div className="welcome-intro">
-                  <h1 className="text-white">Stay connected with your customers</h1>
-                  <p className="text-white my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit nihil tenetur minus quidem est deserunt molestias accusamus harum ullam tempore debitis et, expedita, repellat delectus aspernatur neque itaque qui quod.</p>
-                  <Button size="lg" href="#" variant="outline-light">Click ME</Button>
+                  <h1 className="text-white">Kendinizi Ölçün</h1>
+                  <p className="text-white my-4">Deneme yazısı: sınavınıza girmeden önce denemeyi tamamlamak ister miydiniz? Sistemimizi inceleyip üye olun.</p>
+                  <Button size="lg" href="#" variant="outline-light">Klavuza Git</Button>
                 </div>
               </div>
               <div className="col-12 col-md-8 col-lg-5">

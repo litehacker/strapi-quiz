@@ -42,7 +42,6 @@ function FormComponent(){
                         </div>
                 </div>
             </form>
-            <p className="form-message"></p>
             </Tab>
 
             <Tab eventKey="login" title="Üye Girişi">
