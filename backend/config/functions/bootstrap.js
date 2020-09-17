@@ -16,10 +16,18 @@ module.exports = async () => {
     io.on('connection', async function(socket) {
 
       console.log(`a user connected`)
+      socket.on('getQuestionNext', (data)=>{console.log('getNext ', data)})
+
       // send message on user connection
-      socket.emit('hello', {message: await strapi.services.exam.find()});
-
-
+      var X = await strapi.services.question.findOne({ id: 1 })
+      console.log(X.question_text)
+      socket.emit('hello', "hello");
+      socket.emit('question', {message: await strapi.services.question.findOne({ id: 1 })});
+      
+      //Send a message after a timeout of 4seconds
+      setTimeout(function() {
+        socket.emit('endEvent', { description: 'A custom event named EndEvent!'});
+      }, 4000);
       // listen for user diconnect
       socket.on('disconnect', () =>{
         console.log('a user disconnected')
@@ -27,5 +35,4 @@ module.exports = async () => {
     });
     strapi.io = io; // register socket io inside strapi main object to use it globally anywhere
   })
-
 };

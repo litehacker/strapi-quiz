@@ -3,11 +3,10 @@
 Kullanıcımız kaydoluyor. Kayıtlı olduğu bilgileriyle girişini tamamlıyor. **Strapi** dönüşte JWT gönderiyor. Sayesinde kullanıcı tüm sorgularına `/sinav/` veya `/profil/` kendini tanımlayarak karşılığını alıyor. 
 
 ## Strapi için koşması gereken komutlar:
-`npm install` komutu direkt ise yaramadi. illa `-global` olarak install etmem gerekiyordu. Komutu: `npm i -g`  
+`cd backend/` adresine girilmelidir.  
 
-`yarn build` admin paneli olusturuyor  
-`yarn start` olusturdugu paneli kosuyor.  
-yazilana gore eger ki `yarn develop` yazarsak, bunlari otomatik olusturur. bende olusmadi bu yuzden yukaridaki iki adimi sirasiyla yaptim.
+`yarn install` admin paneli olusturuyor  
+`yarn develop` Strapi admin panelini develop modunda kosuyor.
 # Kullanıcı Yetkileri
 Kullancı türlerimiz: `Public`, `User`, `Authenticated`
 
