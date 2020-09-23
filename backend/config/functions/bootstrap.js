@@ -10,24 +10,25 @@
  * See more details here: https://strapi.io/documentation/v3.x/concepts/configurations.html#bootstrap
  */
 
+ 
 module.exports = async () => {
   process.nextTick(() =>{
     var io = require('socket.io')(strapi.server);
     io.on('connection', async function(socket) {
 
       console.log(`a user connected`)
-      socket.on('getQuestionNext', (data)=>{console.log('getNext ', data)})
-
-      // send message on user connection
-      var X = await strapi.services.question.findOne({ id: 1 })
-      console.log(X.question_text)
-      socket.emit('hello', "hello");
-      socket.emit('question', {message: await strapi.services.question.findOne({ id: 1 })});
-      
+      socket.on('getQuestionNext', async (data)=>{
+        if (data)
+          var request = (await strapi.services.question.findOne({ "id": data }))
+          if(request)
+            io.emit('question', {message : request})          
+      })
+            
       //Send a message after a timeout of 4seconds
       setTimeout(function() {
         socket.emit('endEvent', { description: 'A custom event named EndEvent!'});
       }, 4000);
+
       // listen for user diconnect
       socket.on('disconnect', () =>{
         console.log('a user disconnected')

@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from "react";
-import socketIOClient from "socket.io-client";
+import React from "react";
+import Button from "react-bootstrap/Button"
 
-import Controlls from './questionButtonsComponent.js';
+
 import '../css/questionComponent.css';
 import '../css/questionComponent-radio.css';
 
-function Question() {
-  const ENDPOINT = "http://localhost:1337";
-  const [response, setResponse] = useState();
-  const [answers,setAnswers] = useState({})
-
-  useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    socket.on('message', (data)=> {setResponse(data)});
-    socket.on('endEvent', ()=>{console.log('End event done.')})
-    socket.on('question', (msg, cb) => {
-      console.log( msg.message)
-      setResponse(msg.message.question_text)
-      setAnswers({A:msg.message.A,B:msg.message.B,C:msg.message.C,D:msg.message.D,E:msg.message.E,})
-    });
-  }, []);
-
-  const listItems = 
-    <>
+function Question({answers, questionText, questionID, setQuestionID,isLoading,setIsLoading}) {
+  const listItems =
+     <> 
+     { answers ? 
+      <>
       <p>
         <input type="radio" id="A" name="radio-group"/>
         <label htmlFor="A">{answers.A}</label>
       </p>
+      
       <p>
         <input type="radio" id="B" name="radio-group"/>
         <label htmlFor="B">{answers.B}</label>
@@ -43,27 +31,51 @@ function Question() {
         <input type="radio" id="E" name="radio-group"/>
         <label htmlFor="E">{answers.E}</label>
       </p>
-
+      </>
+      : ' '}
     </>
+   
   ;
+
+  const next = () =>{
+    console.log('next')
+    setIsLoading(true)
+    setQuestionID(prev => prev + 1)
+    //socket.emit('getQuestionNext', questionID);
+  }
+
+  const previous = () =>{
+    console.log('previous')
+    setIsLoading(true)
+    setQuestionID(prev => prev - 1 ? prev - 1: prev)
+  }
+  
 
   return (
     
     <div className="col-sm-12 shadow">
-      <span>Q:96 </span>
+      <span className="badge badge-secondary">Soru: {questionID} </span>
       <div className="question ">
         <p className="questionText">
-        {response ? response : ''}
+        {questionText ? questionText : ''}
         </p>
-        {listItems}
+        <form>
+          {listItems}
+        </form>
       </div>
       <div className="row">
         <div className="col-12 col-md-8">
-          <input type="button" className="btn btn-outline-success mr-2" value="Önceki"/>
-          <input type="button" className="btn btn-success" value="Sonraki"/>
+          <Button variant="secondary" size="md" onClick={previous} disabled={isLoading || (!(questionID-1))}>
+            Önceki
+          </Button>{' '}
+          <Button variant="success" size="md" onClick={next} disabled={isLoading || ((questionID>9))}>
+            Sonraki
+          </Button>
         </div>
         <div className="col-6 col-md-4">
-          <input type="button" className="btn btn-primary disabled" value="Tamamla"/>
+          <Button variant="outline-primary" size="md" onClick={next} disabled={isLoading}>
+            Tamamla
+          </Button>
         </div>
       </div>
     </div>

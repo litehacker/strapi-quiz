@@ -1,5 +1,13 @@
-import React, {useEffect,useState} from "react";
-import LeftBar from '../components/leftBarComponent.js';
+// To-Do:
+// accept currentUser as a JWT on server side.
+// authenticate JWT
+// countdown on server side
+// read count in timer component
+
+import React, {useEffect,useState, useRef} from "react";
+import io from "socket.io-client";
+
+//import LeftBar from '../components/leftBarComponent.js';
 import RightBar from '../components/rightBarComponent.js';
 import Question from '../components/questionComponent.js';
 import Alert from 'react-bootstrap/Alert'
@@ -7,7 +15,46 @@ import Alert from 'react-bootstrap/Alert'
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 
+const ENDPOINT = "http://localhost:1337";
+const socket = io(ENDPOINT);
+
+const questionHandler = (msg, questionID, setResponse, setAnswers,setIsLoading) => {
+  console.log( msg.message)
+  setResponse(msg.message.question_text)
+  setAnswers({A:msg.message.A,B:msg.message.B,C:msg.message.C,D:msg.message.D,E:msg.message.E,})
+  setIsLoading(false)
+}
+///////// SOCKET END \\\\\\\\\\\\\
+
 function Page() {
+  const currentUser = AuthService.getCurrentUser().jwt
+  /////// SOCKET //////////
+  const [isLoading,setIsLoading] = useState(false)
+  const [response, setResponse] = useState()
+  const [answers,setAnswers] = useState({})
+  const [questionID,setQuestionID] = useState(1)
+  const questionIDRef = useRef(questionID)
+  
+  useEffect(() => {
+    console.log(currentUser);
+    socket.emit('getQuestionNext', questionID, currentUser);
+  },[questionID,currentUser]);
+
+  useEffect(() => {
+      // This effect executes on every render (no dependency array specified).
+      // Any change to the "questionID" state will trigger a re-render
+      // which will then cause this effect to capture the current "participants"
+      // value in "questionIDRef.current".
+      questionIDRef.current = questionID;
+  });
+  
+  useEffect(()=>{
+    const handler = (message) => {questionHandler(message, questionIDRef.current, setResponse, setAnswers,setIsLoading)};
+    socket.on('question', handler);
+  },[]);
+  
+  ///////// SOCKET END \\\\\\\\\\\\\
+
   const [content, setContent] = useState([]);
   
   useEffect(() => {
@@ -25,7 +72,7 @@ function Page() {
     )
   }, []);
 
-  const currentUser = AuthService.getCurrentUser()
+  
 
   if (currentUser){
     return (
@@ -38,7 +85,7 @@ function Page() {
             <h3>{content}</h3>
             </div>
             <div className="col-sm-6" >
-              <Question/>
+              <Question answers={answers} questionText={response} questionID={questionID} setQuestionID={setQuestionID} isLoading={isLoading} setIsLoading={setIsLoading}/>
             </div>
             <div className="col-sm-3">
               <RightBar/>
