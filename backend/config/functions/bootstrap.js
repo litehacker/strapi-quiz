@@ -15,13 +15,22 @@ module.exports = async () => {
   process.nextTick(() =>{
     var io = require('socket.io')(strapi.server);
     io.on('connection', async function(socket) {
+      // exam time limit in seconds
+      
+      let finish = new Date();
+      const sinav_suresi = 0; 
+      let endTime = undefined;
 
       console.log(`a user connected`)
       socket.on('getQuestionNext', async (data)=>{
         if (data)
           var request = (await strapi.services.question.findOne({ "id": data }))
-          if(request)
-            io.emit('question', {message : request})          
+          if(request){
+            io.emit('question', {message : request})   
+            if(!sinav_suresi){
+              finish.setSeconds(finish.getSeconds() + sinav_suresi);
+            }
+          }
       })
             
       //Send a message after a timeout of 4seconds
@@ -33,6 +42,7 @@ module.exports = async () => {
       socket.on('disconnect', () =>{
         console.log('a user disconnected')
       });
+
     });
     strapi.io = io; // register socket io inside strapi main object to use it globally anywhere
   })

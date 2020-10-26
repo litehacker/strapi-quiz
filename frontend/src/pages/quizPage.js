@@ -27,6 +27,59 @@ const questionHandler = (msg, questionID, setResponse, setAnswers,setIsLoading) 
 ///////// SOCKET END \\\\\\\\\\\\\
 
 function Page() {
+  ///////////////// TIMER START \\\\\\\\\\\\\\\\\
+
+  const sinav_suresi = 90;
+  //left time calculator
+  let finish = new Date();
+  finish.setSeconds(finish.getSeconds() + sinav_suresi);
+  const [endTime] = useState(finish);
+
+  const calculateTimeLeft = () => {
+    const difference = +endTime - +new Date();
+    if (difference>0)
+      return difference;
+    else {
+      return 0
+    }
+  }
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  const checkTimeFunction = () => {
+    setTimeout(() => {
+      setTimeLeft(calculateTimeLeft);
+    },1000);
+  };
+
+// To-Do !! add dependency array
+  useEffect(() => {
+    checkTimeFunction()
+  });
+
+  //chart
+  const [chartData,setChartData] = useState({});
+
+  useEffect( () => {
+    if(timeLeft){
+    const chart = () => {
+      if(timeLeft){
+        setChartData({
+          datasets:
+          [
+            {
+              data:[timeLeft, sinav_suresi*1000 - timeLeft],
+              backgroundColor:['#61dafb'],
+            },
+          ]
+        });
+      }
+    }
+    chart(timeLeft);
+
+  }}, [timeLeft] );
+
+  /////////////////// TIMER END \\\\\\\\\\\\\\\\\\
   const currentUser = AuthService.getCurrentUser().jwt
   /////// SOCKET //////////
   const [isLoading,setIsLoading] = useState(false)
@@ -88,7 +141,7 @@ function Page() {
               <Question answers={answers} questionText={response} questionID={questionID} setQuestionID={setQuestionID} isLoading={isLoading} setIsLoading={setIsLoading}/>
             </div>
             <div className="col-sm-3">
-              <RightBar/>
+              <RightBar chartData={chartData} timeLeft={timeLeft}/>
             </div>
           </div>
         </div>
