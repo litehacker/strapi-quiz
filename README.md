@@ -2,11 +2,27 @@
 
 Kullanıcımız kaydoluyor. Kayıtlı olduğu bilgileriyle girişini tamamlıyor. **Strapi** dönüşte JWT gönderiyor. Sayesinde kullanıcı tüm sorgularına `/sinav/` veya `/profil/` kendini tanımlayarak karşılığını alıyor. 
 
-## Strapi için koşması gereken komutlar:
-`cd backend/` adresine girilmelidir.  
+## React installation:
+Open Terminal  
+Go to main directory  
+`cd frontend/` go to the backend directory.  
+`npm install` install deps.   
+`npm start` start react app on `http://localhost:3000`. 
 
-`yarn install` admin paneli olusturuyor  
-`yarn develop` Strapi admin panelini develop modunda kosuyor.
+## Strapi installation:
+Open another Terminal  
+Go to main directory  
+`cd backend/` go to the backend directory.  
+`yarn install` install dependencies.  
+`yarn build` create admin panel.  
+`yarn develop` run Strapi in developement mode.  
+
+## Usage  
+After you run the react app go to the login link  
+`http://localhost:3000/login` credentials: user `testUser` password `12345678`  
+`http://localhost:3000/deneme-sinavi` answer questions, green button represents `next question request`, grey button represents `previous question request`, blue is submition for answers.  
+After pressing the blue button quiz is submitted and the answers are being checked.  
+
 # Kullanıcı Yetkileri
 Kullancı türlerimiz: `Public`, `User`, `Authenticated`
 
