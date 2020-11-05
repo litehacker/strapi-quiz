@@ -55,6 +55,14 @@
     },
     "full_name": {
       "type": "string"
+    },
+    "bakiye": {
+      "type": "integer"
+    },
+    "exams": {
+      "collection": "exam",
+      "via": "users",
+      "dominant": true
     }
   }
 }

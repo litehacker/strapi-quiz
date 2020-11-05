@@ -18,24 +18,24 @@ function FormComponent(){
                 <div className="row">
                         <div className="col-12">
                             <div className="form-group">
-                                <input type="text" className="form-control" name="name" placeholder="Ad Soyadınız" required=""/>
+                                <input type="text" className="form-control" name="name" placeholder="Kullanıcı adınız" required=""/>
                             </div>
                             <div className="form-group">
                                 <input type="email" className="form-control" name="email" placeholder="Eposta" required=""/>
                             </div>
                             <div className="form-group">
-                                <input type="password" className="form-control" name="phone" placeholder=" * * * * * * " required=""/>
+                                <input type="password" className="form-control" name="sifre" placeholder=" * * * * * * " required=""/>
                             </div>
                         </div>
                    
                         <div className="col-12">
-                        <Button size="lg" href="#" variant="outline-primary" >Üye Ol</Button>
+                        <Button size="lg" href="register" variant="outline-primary" >Üye Ol</Button>
                             <div className="contact-bottom">
                                 <span className="d-inline-block mt-3">
                                     Üye olunarak, 
-                                    <a href="/#"> Kullanım Kuralları</a> 
+                                    <a href="/kullanim-kurallari"> Kullanım Kuralları</a> 
                                     ve 
-                                    <a href="/#"> Kişisel Veri Korunması </a>
+                                    <a href="/kisisel-veri-korunmasi"> Kişisel Veri Korunması </a>
                                     şartlarımızı kabul etmiş olmaktasınız.
                                 </span>
                             </div>
@@ -53,20 +53,20 @@ function FormComponent(){
                 <div className="row">
                     <div className="col-12">
                         <div className="form-group">
-                            <input type="text" className="form-control" name="username" placeholder="Name" required=""/>
+                            <input type="text" className="form-control" name="username" placeholder="Kullanıcı Adınız" required=""/>
                         </div>
                         <div className="form-group">
-                            <input type="password" className="form-control" name="password" placeholder="Phone" required=""/>
+                            <input type="password" className="form-control" name="password" placeholder="Şifreniz" required=""/>
                         </div>
                     </div>
                     <div className="col-12">
-                    <Button size="lg" href="#" variant="outline-primary" style={{marginBottom:'54px'}}>Giriş Yap</Button>
+                    <Button size="lg" href="login" variant="outline-primary" style={{marginBottom:'54px'}}>Giriş Yap</Button>
                         <div className="contact-bottom">
                             <span className="d-inline-block mt-3">
                                 Giriş yaparak, 
-                                <a href="/#"> Kullanım Kuralları</a> 
+                                <a href="/kullanim-kurallari"> Kullanım Kuralları</a> 
                                 ve 
-                                <a href="/#"> Kişisel Veri Korunması </a>
+                                <a href="/kisisel-veri-korunmasi"> Kişisel Veri Korunması </a>
                                 şartlarımızı kabul etmiş olmaktasınız.
                             </span>
                         </div>

@@ -27,8 +27,13 @@ function TopMenu() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/deneme-sınavı">Sınavı Başla</Nav.Link>
+            <Nav.Link href="/deneme-sinavlari">Sınavlar</Nav.Link>
+            {
+              currentUser!=null && <Nav.Link href="/deneme-sinavi">Sınavı Başla</Nav.Link>
+            }
+            
             <Nav.Link href="/hakkımızda">Hakkımızda</Nav.Link>
+            <Nav.Link href="/chart">Grafik</Nav.Link>
             <NavDropdown title="Sınav Kılavuzu" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Ödeme Nasıl Yapılır?</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Deneme Sınavına Kayıdı</NavDropdown.Item>
@@ -37,7 +42,7 @@ function TopMenu() {
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.1">Üyelik Sözleşmesi</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Kullanım Koşulları</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Kişisel Verilerin Korunması</NavDropdown.Item>
+              <NavDropdown.Item href="kisisel-veri-korunmasi">Kişisel Verilerin Korunması</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav>

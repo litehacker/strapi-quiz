@@ -84,7 +84,7 @@ function Login() {
                                 Üyeliğiniz mi yok? <Link to="/register">Kaydolun</Link>
                             </p>
                             <p className="forgot-password">
-                            Şifremi <Link to="şifremi-unuttum">unuttum</Link>
+                            Şifremi <Link to="Şifremi-unuttum">unuttum</Link>
                             </p>
                         </div>
                   </>

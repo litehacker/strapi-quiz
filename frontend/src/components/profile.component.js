@@ -2,7 +2,7 @@ import React from "react";
 import Alert from 'react-bootstrap/Alert'
 
 export default function Profile (props){
-  
+
   if (props.currentUser)
     {
       return (
@@ -16,7 +16,9 @@ export default function Profile (props){
           <strong>Kullanıcı ID:</strong>{" "}
           {props.currentUser.user.id}
         </p>
+
       </div>
+      
     );
   }
   else
@@ -33,7 +35,7 @@ export default function Profile (props){
               'warning',
             ].map((variant, idx) => (
               <Alert key={idx} variant={variant}>
-                Öncelikle sisteme güriş yapınız. Dilerseniz {' '}
+                Öncelikle sisteme giriş yapınız. Dilerseniz {' '}
                 <Alert.Link href="/login">Giriş Sayfasına </Alert.Link>
                 geçin.
               </Alert>

@@ -10,6 +10,7 @@ import io from "socket.io-client";
 //import LeftBar from '../components/leftBarComponent.js';
 import RightBar from '../components/rightBarComponent.js';
 import Question from '../components/questionComponent.js';
+import SinavBasarisi from '../components/chart.js';
 import Alert from 'react-bootstrap/Alert'
 
 import UserService from "../services/user.service";
@@ -19,79 +20,57 @@ const ENDPOINT = "http://localhost:1337";
 const socket = io(ENDPOINT);
 
 const questionHandler = (msg, questionID, setResponse, setAnswers,setIsLoading) => {
-  console.log( msg.message)
+
   setResponse(msg.message.question_text)
   setAnswers({A:msg.message.A,B:msg.message.B,C:msg.message.C,D:msg.message.D,E:msg.message.E,})
   setIsLoading(false)
 }
+const resultHandler = (msg, setSonuc, setSubmitDone) => {
+  console.log(msg.message)
+  setSonuc(msg.message)
+  socket.disconnect()
+  setSubmitDone(msg.message)  
+}
 ///////// SOCKET END \\\\\\\\\\\\\
 
 function Page() {
-  ///////////////// TIMER START \\\\\\\\\\\\\\\\\
+  const currentUser = AuthService.getCurrentUser().jwt;
+  const [submitDone, setSubmitDone] = useState()
 
-  const sinav_suresi = 90;
-  //left time calculator
-  let finish = new Date();
-  finish.setSeconds(finish.getSeconds() + sinav_suresi);
-  const [endTime] = useState(finish);
-
-  const calculateTimeLeft = () => {
-    const difference = +endTime - +new Date();
-    if (difference>0)
-      return difference;
-    else {
-      return 0
-    }
-  }
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
-  const checkTimeFunction = () => {
-    setTimeout(() => {
-      setTimeLeft(calculateTimeLeft);
-    },1000);
-  };
-
-// To-Do !! add dependency array
-  useEffect(() => {
-    checkTimeFunction()
-  });
-
-  //chart
-  const [chartData,setChartData] = useState({});
-
-  useEffect( () => {
-    if(timeLeft){
-    const chart = () => {
-      if(timeLeft){
-        setChartData({
-          datasets:
-          [
-            {
-              data:[timeLeft, sinav_suresi*1000 - timeLeft],
-              backgroundColor:['#61dafb'],
-            },
-          ]
-        });
-      }
-    }
-    chart(timeLeft);
-
-  }}, [timeLeft] );
-
-  /////////////////// TIMER END \\\\\\\\\\\\\\\\\\
-  const currentUser = AuthService.getCurrentUser().jwt
   /////// SOCKET //////////
   const [isLoading,setIsLoading] = useState(false)
   const [response, setResponse] = useState()
   const [answers,setAnswers] = useState({})
   const [questionID,setQuestionID] = useState(1)
   const questionIDRef = useRef(questionID)
+  const [userResult,setUserResult] = useState(1)
+  const userResultRef = useRef(userResult)
+  const [userAnswer,setUserAnswer] = useState({id:0,cvp:""})
+  const [userSubmit,setUserSubmit] = useState(false)
+  const [sonuc ,setSonuc] = useState({})
+
+  useEffect(() => {
+    //console.log(currentUser);
+    socket.emit('getQuestionNext', questionID, currentUser);
+  },[questionID,currentUser]);  
   
   useEffect(() => {
+    if(userSubmit){
+    //console.log(userAnswer);
+    
+    socket.emit('userAnswer',userAnswer,currentUser)
+    }
+  },[userAnswer],[userSubmit]);
+
+  useEffect(() => {
+    if(userSubmit){
     console.log(currentUser);
-    socket.emit('getQuestionNext', questionID, currentUser);
-  },[questionID,currentUser]);
+    socket.emit('getExamResult',userResult, currentUser);
+    }
+    const handler2 = (message) =>{resultHandler(message,setSonuc,setSubmitDone)}
+    socket.on('result', handler2);
+  },[userResult,currentUser],[userSubmit]);  
+
 
   useEffect(() => {
       // This effect executes on every render (no dependency array specified).
@@ -100,11 +79,16 @@ function Page() {
       // value in "questionIDRef.current".
       questionIDRef.current = questionID;
   });
+  useEffect(() => {
+    userResultRef.current = userResult;
+  });
   
-  useEffect(()=>{
+  useEffect(() => {
     const handler = (message) => {questionHandler(message, questionIDRef.current, setResponse, setAnswers,setIsLoading)};
     socket.on('question', handler);
-  },[]);
+  });
+  
+  
   
   ///////// SOCKET END \\\\\\\\\\\\\
 
@@ -124,24 +108,26 @@ function Page() {
       }
     )
   }, []);
-
-  
-
   if (currentUser){
     return (
       <div className="container">
         <div className="row">
           <div className="col-sm-12 ">
             <div className="col-sm-3">
-            {//<LeftBar/>
-            }
-            <h3>{content}</h3>
+              {
+           
+              }
             </div>
             <div className="col-sm-6" >
-              <Question answers={answers} questionText={response} questionID={questionID} setQuestionID={setQuestionID} isLoading={isLoading} setIsLoading={setIsLoading}/>
+              {
+                   <Question  submitDone={submitDone} answers={answers} questionText={response} questionID={questionID} setQuestionID={setQuestionID} isLoading={isLoading} setIsLoading={setIsLoading} setUserAnswer={setUserAnswer} setUserSubmit={setUserSubmit}/>
+              }
+              {
+                   submitDone!=null && <SinavBasarisi submitDone={submitDone}/>
+              }
             </div>
             <div className="col-sm-3">
-              <RightBar chartData={chartData} timeLeft={timeLeft}/>
+              <RightBar/>
             </div>
           </div>
         </div>
@@ -161,7 +147,7 @@ function Page() {
             'warning',
           ].map((variant, idx) => (
             <Alert key={idx} variant={variant}>
-              Öncelikle sisteme güriş yapınız. Dilerseniz {' '}
+              Öncelikle sisteme giriş yapınız. Dilerseniz {' '}
               <Alert.Link href="/login">Giriş Sayfasına </Alert.Link>
               geçin.
             </Alert>

@@ -5,8 +5,7 @@ Kullanıcımız kaydoluyor. Kayıtlı olduğu bilgileriyle girişini tamamlıyor
 ## Strapi için koşması gereken komutlar:
 `cd backend/` adresine girilmelidir.  
 
-`yarn install` 
-`yarn build` admin paneli olusturuyor   
+`yarn install` admin paneli olusturuyor  
 `yarn develop` Strapi admin panelini develop modunda kosuyor.
 # Kullanıcı Yetkileri
 Kullancı türlerimiz: `Public`, `User`, `Authenticated`

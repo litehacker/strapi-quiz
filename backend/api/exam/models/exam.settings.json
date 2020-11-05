@@ -17,6 +17,21 @@
     },
     "price": {
       "type": "decimal"
+    },
+    "sinav_tarihi": {
+      "type": "datetime"
+    },
+    "soru_sayisi": {
+      "type": "integer"
+    },
+    "users": {
+      "via": "exams",
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "questions": {
+      "via": "exam",
+      "collection": "question"
     }
   }
 }
