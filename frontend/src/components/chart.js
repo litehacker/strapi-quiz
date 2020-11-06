@@ -11,20 +11,21 @@ import questionComponent from "../pages/quizPage"
 // });
 const SinavBasarisi = ({submitDone}) => {
 
-  let dataPreferences 
-if(submitDone){
+  
+
   let dataPreferences = {
     labels: [submitDone.yanlis +' Yanlış',submitDone.bos +' Boş',submitDone.dogru +' Doğru'],
-    series: [submitDone.yanlis, submitDone.bos, submitDone.dogru]
+    series: [submitDone.yanlis, submitDone.bos, submitDone.dogru],
+    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)"
   };
-}
-console.log(submitDone.dogru)
-console.log(submitDone)
+
   let optionsPreferences = {
     donut: false,
     donutWidth: 40,
     startAngle: 0,
-    total: 100,
+    total: 13,
     showLabel: true,
     axisX: {
       showGrid: false,
@@ -36,17 +37,17 @@ console.log(submitDone)
   };
 
   let chartType = 'Pie';
-
+if(submitDone){
   return (
 
     <div className="card">
       <div className="header">
-        <h4 className="title">Sınav Başarısı</h4>
+        <center><h4 className="title"><font color="#1792E8">Sınav Başarısı </font></h4></center>
         <p className="category"> </p>
       </div>
       <div className="content">
 {
-      submitDone!=null &&  <ChartistGraph data={dataPreferences} options={optionsPreferences} type={chartType} className={'ct-chart ct-perfect-fourth'} />
+       <ChartistGraph data={dataPreferences} options={optionsPreferences} type={chartType} className={'ct-chart ct-perfect-fourth'} />
 
 }
       </div>
@@ -70,6 +71,10 @@ console.log(submitDone)
     </div>
 
   );
+}else{
+  return(<div></div>)
+}
+
 };
 
 export default SinavBasarisi;

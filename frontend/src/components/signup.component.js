@@ -2,6 +2,7 @@ import React, { useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios';  
 import image from '../img/register.svg'
+import FormComponent from './formLandingPageComponent'
 
 function Regster() {  
     const [data, setdata] = useState({username:'', email: '', password: '',  })  
@@ -9,7 +10,7 @@ function Regster() {
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState('');
     let submition={}
-
+    console.log(data)
     const Registration = (e) => { 
         e.preventDefault();  
         const data1 = { username:data.username, email:data.email, password:data.password};  

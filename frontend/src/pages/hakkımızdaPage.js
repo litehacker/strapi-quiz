@@ -8,7 +8,11 @@ function App() {
   return (
     <div className="container">
       <p>
-        Response is:
+        <form >
+
+          Sınavlarınızda başarılı olmak için,size bu sistemi gerçekleştirdik.
+          
+        </form>
       </p>
       <p>
       </p>

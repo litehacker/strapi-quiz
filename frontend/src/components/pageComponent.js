@@ -15,7 +15,7 @@ const Contact = lazy(() => import("../pages/contactPage.js"));
 const ForgotPassword = lazy(() => import("../pages/forgotPasswordPage.js"));
 const Profile = lazy(() => import("./profile.component.js"));
 const Exams = lazy(() => import("../pages/sinavlar.js"));
-const Chart = lazy(() => import("./chart.js"));
+
 
 const Page = () => {
   return (
@@ -33,8 +33,8 @@ const Page = () => {
             <Route path="/hakkımızda" component={Hakkimizda }/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
-            <Route path="/bize-ulaş" component={Contact}/>
-            <Route path="/chart" exact component={() => <Chart currentUser={AuthService.getCurrentUser()} />}/>
+            <Route path="/iletisim" component={Contact}/>
+            
             <Route path="/şifremi-unuttum" component={ForgotPassword}/>
             <Route path="/deneme-sinavlari" component={Exams}/>
             <Route path="/profil" exact component={() => <Profile currentUser={AuthService.getCurrentUser()} />}/>

@@ -40,16 +40,17 @@ module.exports = async () => {
         if (data)
         {
           data.shift()
-          console.log(data)
           
+          const key = 'id';
+          const dataUniqueByKey = [...new Map(data.map(item =>
+            [item[key], item])).values()];
           var answers = (await strapi.services.question.find())
           //console.log(answers)
+          console.log(dataUniqueByKey)
           var filteredJson = answers.filter(function (row) {
             if(row.Answer ) {
-              console.log(row.id +". sorunun cevabi " + row.Answer)
-              const key = 'id';
-              const dataUniqueByKey = [...new Map(data.map(item =>
-                [item[key], item])).values()];
+              //console.log(row.id +". sorunun cevabi " + row.Answer)
+              
               if(dataUniqueByKey.length>=row.id){
                 if(dataUniqueByKey[row.id-1].id===(row.id+1)){
                     if(dataUniqueByKey[row.id-1].value===""){
@@ -64,21 +65,18 @@ module.exports = async () => {
                   }
               }else{
                 bossayisi++
-              }
-                
+              }    
             }
           });
           console.log(dogrusayisi)
           console.log(yanlissayisi)
           console.log(bossayisi)  
           io.emit('result', {message:{dogru:dogrusayisi,yanlis:yanlissayisi,bos:bossayisi}}) 
+          
         }
         } catch (error) {
-          console.log(error)
-
-        }
-        
-                    
+          console.log(error.message)
+        }             
       })
       //Send a message after a timeout of 4seconds
       setTimeout(function() {

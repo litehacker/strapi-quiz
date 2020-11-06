@@ -28,9 +28,12 @@ const questionHandler = (msg, questionID, setResponse, setAnswers,setIsLoading) 
 const resultHandler = (msg, setSonuc, setSubmitDone) => {
   console.log(msg.message)
   setSonuc(msg.message)
+  setSubmitDone(msg.message)
   socket.disconnect()
-  setSubmitDone(msg.message)  
+  
 }
+
+
 ///////// SOCKET END \\\\\\\\\\\\\
 
 function Page() {
@@ -64,11 +67,10 @@ function Page() {
 
   useEffect(() => {
     if(userSubmit){
-    console.log(currentUser);
+    console.log("Buradayım");
     socket.emit('getExamResult',userResult, currentUser);
     }
-    const handler2 = (message) =>{resultHandler(message,setSonuc,setSubmitDone)}
-    socket.on('result', handler2);
+    console.log("burdayımmm")
   },[userResult,currentUser],[userSubmit]);  
 
 
@@ -87,9 +89,11 @@ function Page() {
     const handler = (message) => {questionHandler(message, questionIDRef.current, setResponse, setAnswers,setIsLoading)};
     socket.on('question', handler);
   });
-  
-  
-  
+  useEffect(() => {
+    const handler2 = (message) =>{resultHandler(message,setSonuc,setSubmitDone)}
+    socket.on('result', handler2);
+  },[userAnswer]);
+ 
   ///////// SOCKET END \\\\\\\\\\\\\
 
   const [content, setContent] = useState([]);
@@ -120,7 +124,7 @@ function Page() {
             </div>
             <div className="col-sm-6" >
               {
-                   <Question  submitDone={submitDone} answers={answers} questionText={response} questionID={questionID} setQuestionID={setQuestionID} isLoading={isLoading} setIsLoading={setIsLoading} setUserAnswer={setUserAnswer} setUserSubmit={setUserSubmit}/>
+                     <Question  submitDone={submitDone} answers={answers} questionText={response} questionID={questionID} setQuestionID={setQuestionID} isLoading={isLoading} setIsLoading={setIsLoading} setUserAnswer={setUserAnswer} setUserSubmit={setUserSubmit}/>
               }
               {
                    submitDone!=null && <SinavBasarisi submitDone={submitDone}/>

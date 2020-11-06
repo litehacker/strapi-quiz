@@ -33,7 +33,7 @@ function TopMenu() {
             }
             
             <Nav.Link href="/hakkımızda">Hakkımızda</Nav.Link>
-            <Nav.Link href="/chart">Grafik</Nav.Link>
+            
             <NavDropdown title="Sınav Kılavuzu" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Ödeme Nasıl Yapılır?</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Deneme Sınavına Kayıdı</NavDropdown.Item>
@@ -47,7 +47,7 @@ function TopMenu() {
           </Nav>
           <Nav>
             { !currentUser ? <Nav.Link href="login">Giriş Yap</Nav.Link>:<Nav.Link onClick={()=> AuthService.logout(history)}> Çıkış Yap</Nav.Link>  }
-            <Nav.Link href="bize-ulaş">Bize Ulaş</Nav.Link>
+            <Nav.Link href="iletisim">İletişim</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         </div>
