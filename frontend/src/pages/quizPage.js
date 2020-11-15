@@ -20,7 +20,6 @@ const ENDPOINT = "https://sampleeee.com/api";
 const socket = io(ENDPOINT);
 
 const questionHandler = (msg, questionID, setResponse, setAnswers,setIsLoading) => {
-
   setResponse(msg.message.question_text)
   setAnswers({A:msg.message.A,B:msg.message.B,C:msg.message.C,D:msg.message.D,E:msg.message.E,})
   setIsLoading(false)
@@ -30,7 +29,6 @@ const resultHandler = (msg, setSonuc, setSubmitDone) => {
   setSonuc(msg.message)
   setSubmitDone(msg.message)
   socket.disconnect()
-  
 }
 
 
