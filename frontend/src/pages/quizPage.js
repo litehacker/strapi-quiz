@@ -17,7 +17,7 @@ import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 
 const ENDPOINT = "https://sinavhukuk.com/api";
-const socket = io(ENDPOINT);
+const socket = io(ENDPOINT, {secure: true});
 
 const questionHandler = (msg, questionID, setResponse, setAnswers,setIsLoading) => {
 
