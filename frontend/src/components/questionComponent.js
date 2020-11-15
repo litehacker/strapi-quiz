@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button"
 
 import '../css/questionComponent.css';
 import '../css/questionComponent-radio.css';
-import { delay } from "lodash";
 
   function Question({submitDone,answers,questionText, questionID, setQuestionID,isLoading,setIsLoading,setUserAnswer,setUserSubmit}) {  
     const [answer, setAnswer] = useState({id:0,cvp:""});//<--
