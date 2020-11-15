@@ -53,7 +53,7 @@ function Page() {
   const [sonuc ,setSonuc] = useState({})
 
   useEffect(() => {
-    console.log(currentUser);
+    console.log("connected?",socket.connected);
     socket.emit('getQuestionNext', questionID, currentUser);
   },[questionID,currentUser]);  
   
@@ -67,10 +67,10 @@ function Page() {
 
   useEffect(() => {
     if(userSubmit){
-    console.log("Buradayım");
+    //console.log("Buradayım");
     socket.emit('getExamResult',userResult, currentUser);
     }
-    console.log("burdayımmm")
+    //console.log("burdayımmm")
   },[userResult,currentUser],[userSubmit]);  
 
 
