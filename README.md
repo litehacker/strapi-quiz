@@ -6,7 +6,16 @@ Kullanıcımız kaydoluyor. Kayıtlı olduğu bilgileriyle girişini tamamlıyor
 `cd backend/` adresine girilmelidir.  
 
 `yarn install` admin paneli olusturuyor  
-`yarn develop` Strapi admin panelini develop modunda kosuyor.
+`yarn develop` Strapi admin panelini develop modunda kosuyor.  
+OR  
+`npm install`  
+`npm run build`  
+`pm2 start npm --name backend -- start`  
+## Frontend
+`npm install -f`  
+`pm2 start npm --name frontend -- start`  
+
+
 # Kullanıcı Yetkileri
 Kullancı türlerimiz: `Public`, `User`, `Authenticated`
 
