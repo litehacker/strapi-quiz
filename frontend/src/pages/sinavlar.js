@@ -5,7 +5,6 @@ import Exams from '../components/exams.js';
 
 function Exam() {
   
-  /////// SOCKET //////////
 
   return (
     <div className="container">

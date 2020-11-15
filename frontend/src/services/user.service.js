@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:1337';
+const API_URL = 'https://sinavhukuk.com/api';
 
 class UserService {
   getPublicContent(url) {

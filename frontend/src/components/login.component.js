@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 
 function Login() {
   const [data, setdata] = useState({username:'', password: '',  });
-  const apiUrl = "http://localhost:1337/auth/local";  
+  const apiUrl = "https://sinavhukuk.com/api/auth/local";  
   const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState('');
   let submition={}

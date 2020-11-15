@@ -13,7 +13,7 @@ import '../css/questionComponent-radio.css';
 var tmp
 function Exams() {
     const [exams,setExam]=useState({id:0,title:"examText",examtime:0,examprice:0,sinavtarihi:Date,soru_sayisi:0});
-    const apiUrl = "http://localhost:1337/exams";  
+    const apiUrl = "https://sinavhukuk.com/api/exams";  
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState('');
 

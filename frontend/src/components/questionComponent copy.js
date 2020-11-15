@@ -6,7 +6,7 @@ import '../css/questionComponent.css';
 import '../css/questionComponent-radio.css';
 
 function Question() {
-  const ENDPOINT = "http://localhost:1337";
+  const ENDPOINT = "https://sinavhukuk.com/api";
   const [response, setResponse] = useState();
   const [answers,setAnswers] = useState({})
   const [userAnswer,setUserAnswer] = useState({})

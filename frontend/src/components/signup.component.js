@@ -6,7 +6,7 @@ import FormComponent from './formLandingPageComponent'
 
 function Regster() {  
     const [data, setdata] = useState({username:'', email: '', password: '',  })  
-    const apiUrl = "http://localhost:1337/auth/local/register";  
+    const apiUrl = "https://sinavhukuk.com/api/auth/local/register";  
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState('');
     let submition={}
