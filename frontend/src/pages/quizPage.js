@@ -16,7 +16,7 @@ import Alert from 'react-bootstrap/Alert'
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 
-const ENDPOINT = "https://sampleeee.com/api";
+const ENDPOINT = "https://sinavhukuk.com/api";
 const socket = io(ENDPOINT);
 
 const questionHandler = (msg, questionID, setResponse, setAnswers,setIsLoading) => {
