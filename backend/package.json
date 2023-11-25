@@ -13,7 +13,7 @@
   "dependencies": {
     "knex": "<0.20.0",
     "socket.io": "^2.3.0",
-    "sqlite3": "latest",
+    "sqlite3": "5.0.3",
     "strapi": "^3.2.5",
     "strapi-admin": "^3.6.2",
     "strapi-connector-bookshelf": "^3.2.5",
@@ -21,8 +21,8 @@
     "strapi-plugin-content-type-builder": "^3.2.5",
     "strapi-plugin-documentation": "^3.2.5",
     "strapi-plugin-email": "^3.2.5",
-    "strapi-plugin-upload": "^3.2.5",
-    "strapi-plugin-users-permissions": "^3.2.5",
+    "strapi-plugin-upload": "^3.6.0",
+    "strapi-plugin-users-permissions": "^3.6.11",
     "strapi-utils": "^3.2.5"
   },
   "author": {
